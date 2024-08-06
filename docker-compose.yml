@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    platform: linux/amd64
+    environment:
+      - SITE_TO_STREAM=https://stage.liveaccess.online/p/f4hnpr?language=de
+      - STREAM_DEST=udp://127.0.0.1:1234?pkt_size=1316
+    ports:
+      - "1234:1234"
+    network_mode: host
