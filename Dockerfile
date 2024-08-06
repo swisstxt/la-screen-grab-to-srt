@@ -1,5 +1,5 @@
 # Use the official Node.js LTS image as the base image
-FROM node:lts
+FROM node:lts-iron
 
 # Create and change to the app directory
 WORKDIR /usr/src/app
@@ -8,10 +8,9 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install app dependencies
-RUN npm ci
+RUN npm clean-install
 
 # Install ffmpeg
-#RUN apt-get update && apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge-2.0
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     ca-certificates \
