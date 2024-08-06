@@ -10,7 +10,7 @@ const { spawn } = require('child_process');
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 720 });
   //await page.goto('https://swisstxt.ch'); // Replace with your target URL
-  await page.goto('https://stage.liveaccess.online/p/f4hnpr?language=de')
+  await page.goto(process.env.SITE_TO_STREAM)
 
   // Define the selector of the element you want to capture
   const elementSelector = '.mantine-Paper-root'; // Replace with your target element's selector
@@ -36,17 +36,13 @@ const { spawn } = require('child_process');
     '-f', 'image2pipe',
     '-r', '30',
     '-i', '-',
-    //'-f', 'alsa', '-i', 'default', // Adjust audio input as needed
     '-c:v', 'libx264',
     '-preset', 'veryfast',
     '-b:v', '3000k',
     '-maxrate', '3000k',
     '-bufsize', '6000k',
-    //'-c:a', 'aac',
-    //'-b:a', '128k',
     '-f', 'mpegts',
-    'udp://127.0.0.1:1234?pkt_size=1316'
-    //'srt://listener_ip:port?pkt_size=1316' // Replace with your SRT listener details
+    process.env.STREAM_DEST
   ]);
 
   ffmpeg.stderr.on('data', (data) => {

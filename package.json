@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node -r dotenv/config index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -11,5 +11,8 @@
   "description": "",
   "dependencies": {
     "puppeteer": "^22.15.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5"
   }
 }
