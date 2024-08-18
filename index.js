@@ -66,9 +66,8 @@ const { spawn } = require('child_process');
       }
     });
     ffmpeg.stdin.write(screenshot);
-    setTimeout(captureFrame, 33); // Capture at ~30fps
   };
 
-
-  captureFrame();
+  const interval = setInterval(captureFrame, 500)
+  console.log(`started interval '${interval}' of captureFrame`)
 })();
